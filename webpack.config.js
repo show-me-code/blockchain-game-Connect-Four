@@ -17,7 +17,7 @@ module.exports = {
   devtool: 'source-map',
   module: {
     rules: [
-      { test: /\.s?css$/, use: [ 'style-loader', 'css-loader', 'sass-loader' ] },
+      { test: /\.s?css$/, use: [ 'style-loader', 'css-loader', 'sass-loader'] },
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
@@ -25,8 +25,13 @@ module.exports = {
         query: {
           presets: ['env'],
           plugins: ['transform-react-jsx', 'transform-object-rest-spread', 'transform-runtime']
-        }
-      }
+        }  
+      },
+      {
+        test: /\.(jpg|png|gif)/,
+        use: "url-loader?limit=8000"
+    }
+
     ]
   }
 }

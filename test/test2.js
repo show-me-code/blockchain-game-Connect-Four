@@ -1,7 +1,7 @@
 import { AssertionError } from "assert";
 
 var TicTacToc = artifacts.require("TicTacToc");
-
+//测试游戏胜利
 //var moneyUsed = 1000000000000000000;
 var moneyUsed = web3.utils.toWei('1', 'ether');
 contract("TicTacToc", function(accounts){
@@ -11,6 +11,7 @@ contract("TicTacToc", function(accounts){
         var player2 = accounts[1];
         return TicTacToc.new({from : accounts[0], value : moneyUsed}).then(instance => {
             Instance = instance;
+            //加入第二个玩家
             return instance.joinGame({from : player2, value : moneyUsed})
         }).then(board => {
             return Instance.setChess(0,0,{from : board.logs[1].args.player})

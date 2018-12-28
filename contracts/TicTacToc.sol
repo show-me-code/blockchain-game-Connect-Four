@@ -9,6 +9,8 @@ pragma solidity ^0.5.0;
 在所有需要支付的地址上加入了payable来让玩家的地址可以被支付
 将this.balance改为了address(this).balance
 用以太币钱包部署的应该就是旧版本了，这个版本控制真的是闹心
+12.27更新
+删除了energencyCashOut和withDrawMoney，发现没有使用的必要
  */
 contract TicTacToc{
     uint constant GameValue = 1 ether;
@@ -51,6 +53,7 @@ contract TicTacToc{
         avaliableGameTime = now + timeToMove;
         emit playerJoined(player2);
         gameActive = true;
+        //为了尽可能地随机，使用区块的数
         if(block.number%2 == 0) {
             activedPlayer = player1;
         } else {
@@ -109,7 +112,7 @@ contract TicTacToc{
                 }
             }
         }
-        //antidiagonale
+        //反对角线 antidiagonale
         if((x + y) == boardSize - 1){
             for(uint index = 0; index < boardSize; index++){
                 if(board[index][(boardSize-1) - index] != activedPlayer){
@@ -123,7 +126,7 @@ contract TicTacToc{
                 }
             }
         }
-
+        //平局情况
         if(movesCounter == boardSize**2){
             //draw
             setDraw();
@@ -143,7 +146,7 @@ contract TicTacToc{
         return board;
     }
 
-    //在0.5.0更新之后必须要给地址加上payable才能调用send啥的，我佛了
+    //在0.5.0更新之后必须要给地址加上payable才能调用send啥的，我佛了，事件前加入emit
     function setWinner(address payable player) private {
         gameActive = false;
         //emit event
@@ -178,25 +181,5 @@ contract TicTacToc{
             emit GetMoney(player2, moneyWithDraw);
         }
     }
-    //if something happen you can use this to get your money later
-    function withDrawMoneyWin() public {
-        if(msg.sender == player1) {
-            require(getMoneyPlayer1 > 0);
-            player1.transfer(getMoneyPlayer1);
-            emit GetMoney(player1,getMoneyPlayer1);
-            getMoneyPlayer1 = 0;
-        } else {
-            require(getMoneyPlayer2 > 0);
-            player2.transfer(getMoneyPlayer2);
-            emit GetMoney(player2, getMoneyPlayer2);
-            getMoneyPlayer2 = 0;
-        }
-    }
 
-    //if someone out the game use it to return the money
-    function emergencyCashOut() public {
-        require(avaliableGameTime < now);
-        require(gameActive);
-        setDraw();
-    }
 }

@@ -1,15 +1,21 @@
 <!DOCTYPE html>
-
+<!--使用bootstrap，去除原来的格式-->
 <html>
 <head>
   <title>TicTacToc</title>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <script src="./app.js"></script>
 </head>
-<body>
-  <h1>TicTacToc</h1>
-  <h2>the tictactoc game but need 4 cheek a line to win</h2>
-  <table id = board>
+
+<body class="back"> 
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+  <h1 class="header">Connect four morty</h1>
+  <h2 class="header2">the game need 4 cheek a line to win</h2>
+  <div class="during-game" id="waiting" style="color:antiquewhite">waiting for another player</div>
+  <div class="during-game" id="your-turn" style="color:antiquewhite">It's your turn</div>
+  <table class="board" id = board>
     <tbody>
       <tr>
         <td></td>
@@ -37,12 +43,24 @@
       </tr>
     </tbody>
   </table>
-  <br><br><button id="newGame" onclick="App.newGame()">start game</button>
-  <br><br><button id="joinGame" onclick="App.joinGame()">join game</button>
- 
+  <div class="after-start">
+  <br><br><button id="newGame" onclick="App.newGame()" class="btn btn-outline-warning">start game</button>
+  <br><br><button id="joinGame" onclick="App.joinGame()" class="btn btn-outline-warning">join game</button>
+  
+  </div>
+  <div class="during-game"  style="color:antiquewhite">
+    game address: <span id="game-address"  style="color:antiquewhite"></span><br><br>
+    <div class="waiting" style="color:antiquewhite">another player's address:<span id="another-address"></span></div> 
+  </div>
   <br><br>
-  <span id="status"></span>
+  
+  <span class="hint">Hint: the game cost 1 ether</span>
   <br>
   <span class="hint"><strong>Hint:</strong> open the browser developer console to view any errors and warnings.</span>
+  <br>
+  <span class="hint"><strong>Hint:</strong> 图片来源于Rick and Morty.</span>
+</div>
+</div>
+</div>
 </body>
 </html>

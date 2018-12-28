@@ -1,61 +1,33 @@
-body {
-  margin-left: 25%;
-  margin-right: 25%;
-  margin-top: 10%;
-  font-family: "Open Sans", sans-serif;
+.back{
+  background-image: url(back.png);
+  background-repeat: no-repeat;
+  margin: auto;
+  background-position: center;
 }
-
-label {
-  display: inline-block;
-  width: 100px;
+.header{
+  color: aliceblue;
 }
-
-input {
-  width: 500px;
-  padding: 5px;
-  font-size: 16px;
+.header2{
+  color: ghostwhite;
 }
-
-button {
-  font-size: 16px;
-  padding: 5px;
+.during-game{
+  display: none;
 }
-
-h1, h2 {
-  display: inline-block;
-  vertical-align: middle;
-  margin-top: 0px;
-  margin-bottom: 10px;
+.hint{
+  color: bisque;
 }
-
-h2 {
-  color: #AAA;
-  font-size: 32px;
-}
-
-h3 {
-  font-weight: normal;
-  color: #AAA;
-  font-size: 24px;
-}
-
-.black {
-  color: black;
-}
-
-#balance {
-  color: black;
-}
-
-.hint {
-  color: #666;
-}
-
-#board{
+.board{
   width: 300px;
   height: 300px;
+  table-layout: fixed;
+  word-break: break-all;
+  word-wrap: break-word;
+  margin: 0 auto;
 }
+
 #board td{
   border: 1px solid;
-  color: blueviolet;
+  color: whitesmoke;
+  width: 75px;
+  height: 75px;;
 }
