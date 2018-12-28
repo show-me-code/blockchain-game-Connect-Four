@@ -19,7 +19,7 @@ var getAddress;
 var remindEvent;
 var GameOverWinnerEvent;
 var GameOverDrawEvent;
-var arrEventFired;
+
 
 let accounts
 let account
@@ -46,7 +46,6 @@ const App = {
 
       accounts = accs
       account = accounts[0]
-      arrEventFired = [];
     })
   },
 
